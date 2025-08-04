@@ -38,7 +38,7 @@ function renderDashboard({ user, xp, grades, auditsDone, auditsReceived, recentR
       <!-- Graph switching buttons -->
       <div style="display: flex; gap: 10px; margin-bottom: 15px; justify-content: center;">
         <button id="audit-ratio-btn" class="graph-btn active" style="background: rgba(255,255,255,0.2); color: #333; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.3s ease;">Audit Ratio</button>
-        <button id="xp-progress-btn" class="graph-btn" style="background: rgba(255,255,255,0.1); color: #666; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.3s ease;">XP Progress</button>
+        <button id="xp-progress-btn" class="graph-btn" style="background: rgba(255,255,255,0.1); color: #fc00ff; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.3s ease;">XP Progress</button>
       </div>
       <!-- Graph container -->
       <div id="graphql-graphs" style="flex: 1; display: flex; align-items: center; justify-content: center; height: 280px; min-height: 280px; max-height: 280px; overflow: hidden; padding: 10px;"></div>
@@ -60,14 +60,14 @@ function renderDashboard({ user, xp, grades, auditsDone, auditsReceived, recentR
   // Rental Index Card → XP (no dummy bars/percentages)
   document.querySelectorAll('.metric-card')[0].innerHTML = `
     <div class="metric-title">Total XP</div>
-    <div style="font-size: 12px; color: #666; margin-bottom: 20px;">Your accumulated experience points</div>
+    <div style="font-size: 12px; color: #fc00ff; margin-bottom: 20px;">Your accumulated experience points</div>
     <div class="metric-value">${formatBytes(xp)}</div>
   `;
 
   // Revenue Card → Audits Done (no dummy donut, just numbers)
   document.querySelector('.revenue-card').innerHTML = `
     <div class="metric-title" style="color: #333;">Audits Done</div>
-    <div style="font-size: 12px; color: #666; margin-bottom: 10px;">Total audits you have performed</div>
+    <div style="font-size: 12px; color: #fc00ff; margin-bottom: 10px;">Total audits you have performed</div>
     <div style="font-size: 2.5rem; font-weight: 700; text-align:center;">${auditsDone.total}</div>
     <div style="text-align: center; margin-top: 10px;">
       <span style="color:#00d4aa; font-weight:600;">Passed: ${auditsDone.passed}</span> &nbsp;|&nbsp; <span style="color:#ff6b6b; font-weight:600;">Failed: ${auditsDone.failed}</span>
@@ -79,7 +79,7 @@ function renderDashboard({ user, xp, grades, auditsDone, auditsReceived, recentR
   if (auditsReceivedCard && auditsReceivedCard.classList.contains('campus-card') === false) {
     auditsReceivedCard.innerHTML = `
       <div class="metric-title">Audits Received</div>
-      <div style="font-size: 12px; color: #666; margin-bottom: 15px;">Audits performed on your work</div>
+      <div style="font-size: 12px; color: #fc00ff; margin-bottom: 15px;">Audits performed on your work</div>
       <div style="font-size: 2.5rem; font-weight: 700; text-align:center;">${auditsReceived.total}</div>
       <div style="text-align: center; margin-top: 10px;">
         <span style="color:#00d4aa; font-weight:600;">Passed: ${auditsReceived.passed}</span> &nbsp;|&nbsp; <span style="color:#ff6b6b; font-weight:600;">Failed: ${auditsReceived.failed}</span>
@@ -99,18 +99,18 @@ function renderDashboard({ user, xp, grades, auditsDone, auditsReceived, recentR
   if (bottomCards[0]) {
     bottomCards[0].innerHTML = `
       <div style="font-weight: 600; margin-bottom: 10px;">Recent Grades</div>
-      <div style="font-size: 12px; color: #666; margin-bottom: 10px;">Last 5 grades</div>
+      <div style="font-size: 12px; color: #fc00ff; margin-bottom: 10px;">Last 5 grades</div>
       <ul style="padding-left: 1.2em; margin: 0; list-style: none; text-align:center;">
-        ${grades.map(g => `<li style="margin-bottom:8px;padding:4px 0;border-bottom:1px solid #eee;font-size:1.08rem;color:#222;display:inline-block;width:100%;text-align:center;"><span style='font-weight:600;'>${formatNumber(g.grade)}</span> - <span style='color:#667eea;'>${g.path.split('/').pop()}</span></li>`).join('')}
+        ${grades.map(g => `<li style="margin-bottom:8px;padding:4px 0;border-bottom:1px solid #eee;font-size:1.08rem;color:#222;display:inline-block;width:100%;text-align:center;"><span style='font-weight:600; color: #ffffff'>${formatNumber(g.grade)}</span> - <span style='color:#24FE41;'>${g.path.split('/').pop()}</span></li>`).join('')}
       </ul>
     `;
   }
   if (bottomCards[1]) {
     bottomCards[1].innerHTML = `
       <div style="font-weight: 600; margin-bottom: 10px;">Recent Projects</div>
-      <div style="font-size: 12px; color: #666; margin-bottom: 10px;">Last 5 Projects</div>
+      <div style="font-size: 12px; color: #fc00ff; margin-bottom: 10px;">Last 5 Projects</div>
       <ul style="padding-left: 1.2em; margin: 0; list-style: none; text-align:center;">
-        ${recentResults.map(r => `<li style="margin-bottom:8px;padding:4px 0;border-bottom:1px solid #eee;font-size:1.08rem;color:#222;display:inline-block;width:100%;text-align:center;"><span style='font-weight:600;'>${formatNumber(r.grade)}</span> - <span style='color:#764ba2;'>${r.path.split('/').pop()}</span></li>`).join('')}
+        ${recentResults.map(r => `<li style="margin-bottom:8px;padding:4px 0;border-bottom:1px solid #eee;font-size:1.08rem;color:#222;display:inline-block;width:100%;text-align:center;"><span style='font-weight:600; color: #ffffff'>${formatNumber(r.grade)}</span> - <span style='color:#ffff00;'>${r.path.split('/').pop()}</span></li>`).join('')}
       </ul>
     `;
   }
@@ -145,7 +145,7 @@ function switchGraph(graphType, xp, grades, auditsDone, auditsReceived, auditRat
   document.querySelectorAll('.graph-btn').forEach(btn => {
     btn.classList.remove('active');
     btn.style.background = 'rgba(255,255,255,0.1)';
-    btn.style.color = '#666';
+    btn.style.color = '#fc00ff';
   });
   
   const activeBtn = document.getElementById(`${graphType.replace('-', '-')}-btn`);
