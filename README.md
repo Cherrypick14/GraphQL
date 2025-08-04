@@ -1,9 +1,18 @@
 # GraphQL Dashboard
 
 A sleek dashboard for 01-Edu apprentices to track XP, audits, and learning progress, powered by GraphQL .
+
 ---
 
+## 🔐 Login Page Preview
 
+![Login Screenshot](assets/login-graphql.png)
+
+> _Screenshot of the login page showing JWT-based authentication UI._
+
+[🌐 View Live Demo on Netlify](https://graphql-profile-view.netlify.app/) 
+
+---
 ## Features
 
 - **User Authentication:** Secure login using username/email and password, with JWT-based session management.
